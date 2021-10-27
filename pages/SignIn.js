@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import { View, StyleSheet, Text, TextInput, Button, Alert } from 'react-native';
+import UserCard from '../components/UserCard';
 
 const SignIn = () => {
 
@@ -20,92 +21,58 @@ const SignIn = () => {
 
 
     return(
-        <View style={styles.body}>
-            <View>
-                <Text style={styles.header}>
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <Text style={styles.headerTag}>
                     Sign In
                 </Text>
             </View>
-            <View style={styles.card}>
-                <View style={{flex:1}}>
-                    <Text style={styles.text}>
-                        First Name :
-                    </Text>
-                </View>
-                <View style={{flex:2}}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Atahan"
-                        onChangeText={(value) => setFirstName(value)}
-                    />
-                </View>                
-                
-            </View>
-            <View style={styles.card}>
-                <View style={{flex:1}}>
-                    <Text style={styles.text}>
-                        Last Name :
-                    </Text>
-                </View>
-                <View style={{flex:2}}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Sezgin"
-                        onChangeText={(value) => setLastName(value)}
-                    />
-                </View>
-            </View>
-            <View style={styles.card}>
-                <View style={{flex:1}}>
-                    <Text style={styles.text}>
-                        Email :
-                    </Text>
-                </View>
-                <View style={{flex:2}}>
-                    <TextInput
-                    style={styles.input}
+            <View style={styles.body}>
+                <UserCard
+                    label="First Name :"
+                    placeholder="Atahan"
+                    onChangeText={(value) => setFirstName(value)}
+                    keyboardType='number-pad'
+                    secureTextEntry={false}
+                    value={firstName}
+                />
+                <UserCard
+                    label="Last Name :"
+                    placeholder="Sezgin"
+                    onChangeText={(value) => setLastName(value)}
+                    keyboardType='default'
+                    secureTextEntry={false}
+                    value={lastName}
+                />
+                <UserCard
+                    label="Email :"
                     placeholder="mail@mail.com"
                     onChangeText={(value) => setEmail(value)}
                     keyboardType='email-address'
+                    secureTextEntry={false}
+                    value={email}
                 />
-                </View>
-                
-            </View>
-            <View style={styles.card}>
-                <View style={{flex:1}}>
-                    <Text style={styles.text}>
-                    Password :
-                    </Text>
-                </View>
-                <View style={{flex:2}}>
-                    <TextInput
-                    style={styles.input}
-                    placeholder="12345"
+                <UserCard
+                    label="Password :"
+                    placeholder="not 12345"
                     onChangeText={(value) => setPwd1(value)}
+                    keyboardType='default'
                     secureTextEntry={true}
-                    />
-                </View>                
-            </View>
-            <View style={styles.card}>
-                <View style={{flex:1}}>
-                    <Text style={styles.text}>
-                    Verify Password :
-                    </Text>
-                </View>
-                <View style={{flex:2}}>
-                    <TextInput
-                    style={styles.input}
-                    placeholder="12345"
+                    value={pwd1}
+                />
+                <UserCard
+                    label="Verify Password :"
+                    placeholder="not 12345"
                     onChangeText={(value) => setPwd2(value)}
+                    keyboardType='default'
                     secureTextEntry={true}
-                    />
-                </View>
-                
+                    value={pwd2}
+                />            
+                <Button
+                    title="Sign in"
+                    onPress={submitHandler}
+                />
             </View>
-            <Button
-                title="Sign in"
-                onPress={submitHandler}
-            />
         </View>
     );
 }
@@ -113,29 +80,23 @@ const SignIn = () => {
 export default SignIn;
 
 const styles = StyleSheet.create({
-    body:{
+    container:{
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },
     header:{
+        flex: 1,
+        alignItems:'center',
+        justifyContent:'flex-end',
+    },
+    body:{
+        flex:3,
+        alignItems:'center',
+        justifyContent:'center',
+    },
+    headerTag:{
         fontSize:40,
-        marginBottom:50
     },
-    text:{
-        fontSize:16,
-        marginRight:20
-    },
-    input:{
-        borderWidth:2,
-        borderRadius:10,
-        width: '95%',
-        textAlign:'center'
-    },
-    card:{
-        flexDirection:'row',
-        padding: 10,
-        borderRadius:10
-    }
 })

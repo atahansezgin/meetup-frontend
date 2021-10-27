@@ -1,87 +1,50 @@
 import React,{useState} from 'react';
-import { View, StyleSheet, Text, TextInput, Button, Alert } from 'react-native';
+import { View, Text, Button, Alert } from 'react-native';
+import UserCard from '../components/UserCard';
+import UserPageSyles from '../styles/UserPageStyles';
 
 const Login = () => {
 
     const[email,setEmail] = useState("");
     const[password,setPassword] = useState("");
 
-    const emailHandler = (value) => {
-        setEmail(value);
-    }
-
-    const passwordHandler = (value) => {
-        setPassword(value)
-    }
-
     const submitHandler = () => {
         Alert.alert(email+" "+password);
+        setEmail('');
+        setPassword('');
     }
 
     return(
-        <View style={styles.body}>
-            <View style={styles.card}>
-                <View style={{flex:1}}>
-                    <Text style={styles.text}>
-                        Email :
-                    </Text>
-                </View>
-                <View style={{flex:2}}>
-                    <TextInput
-                        style={styles.input}
+        <View style={UserPageSyles.container}>
+            <View style={UserPageSyles.header}>
+                <Text style={UserPageSyles.headerTag}>
+                    Login
+                </Text>
+            </View>
+            <View style={UserPageSyles.body}>
+                <UserCard
+                        label="Email :"
                         placeholder="mail@mail.com"
-                        onChangeText={emailHandler}
+                        onChangeText={(value) => setEmail(value)}
                         keyboardType='email-address'
-                    />
-                </View>
-                
-            </View>
-            <View style={styles.card}>
-                <View style={{flex:1}}>
-                    <Text style={styles.text}>
-                        Password :
-                    </Text>
-                </View>
-                <View style={{flex:2}}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="12345"
-                        onChangeText={passwordHandler}
+                        secureTextEntry={false}
+                        value={email}
+                />
+                <UserCard
+                        label="Password :"
+                        placeholder="*****"
+                        onChangeText={(value) => setPassword(value)}
+                        keyboardType='default'
                         secureTextEntry={true}
-                    />
-                </View>
-                
+                        value={password}
+                />
+                <Button
+                    title="Login"
+                    onPress={submitHandler}
+                />
             </View>
-            <Button
-                title="Login"
-                onPress={submitHandler}
-            />
         </View>
     );    
 }
 
 export default Login;
-
-const styles = StyleSheet.create({
-    body:{
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    text:{
-        fontSize:16,
-        marginRight:20
-    },
-    input:{
-        borderWidth:2,
-        borderRadius:10,
-        width: '95%',
-        textAlign:'center'
-    },
-    card:{
-        flexDirection:'row',
-        padding: 10,
-        borderRadius:10,
-    }
-})
