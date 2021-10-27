@@ -1,7 +1,7 @@
 import React , { useState } from 'react';
 import { FlatList, Text, View, StyleSheet } from 'react-native';
 
-const Eventt = ({title,date,description,place}) => {
+const Event = ({title,date,description,place}) => {
     return(
         <View style={styles.event}>
             <View style={styles.eventHeader}>
@@ -12,7 +12,7 @@ const Eventt = ({title,date,description,place}) => {
                 </View>
                 <View>
                     <Text>
-                        {date}
+                        {date} 
                     </Text>
                 </View>
             </View>            
@@ -31,7 +31,7 @@ const Eventt = ({title,date,description,place}) => {
     );
 }
 
-export default Eventt;
+export default Event;
 
 const styles = StyleSheet.create({
     event:{
