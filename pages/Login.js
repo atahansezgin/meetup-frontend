@@ -9,9 +9,9 @@ const Login = ({navigation}) => {
     const[password,setPassword] = useState("");
 
     const submitHandler = () => {
-        Alert.alert(email+" "+password);
         setEmail('');
         setPassword('');
+        navigation.navigate('Home');
     }
 
     return(

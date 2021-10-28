@@ -13,7 +13,6 @@ const SignIn = ({navigation}) => {
     const[pwd2,setPwd2] = useState("");
 
     const submitHandler = () => {
-        // Alert.alert(firstName+" "+lastName+" "+email);
         setEmail('');
         setFirstName('');
         setLastName('');
