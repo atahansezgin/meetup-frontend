@@ -1,20 +1,30 @@
 import axios from 'axios';
 import React , { useState, useEffect } from 'react';
-import { FlatList, Text, View, StyleSheet, ScrollView, SafeAreaView } from 'react-native';
+import { FlatList, StyleSheet, SafeAreaView, RefreshControl, } from 'react-native';
 import Event from '../components/Event';
 import api from '../apiURL.json'
 
-const Home = () => {
+const Home = ({navigation}) => {
+    const[Refreshing, setRefreshing] = useState(false);
     const [DATA,setDATA] = useState([]);
+    
+    const apiCall = () => axios.get(api.url+'Event').then(response => setDATA(response.data))
+    
+    const onRefresh = () => {
+        setRefreshing(true);
+        apiCall();
+        setRefreshing(false);
+    }
 
-    useEffect(()=>{
-        axios.get(api.url+'Event')
-            .then(response => setDATA(response.data))
-    })
-
+    useEffect(() => {
+        apiCall();
+    },[]);
     return(
         <SafeAreaView>
             <FlatList
+                refreshControl={
+                    <RefreshControl refreshing={Refreshing} onRefresh={onRefresh}/>
+                }
                 contentContainerStyle={styles.container}
                 data={DATA}
                 keyExtractor={(item,index) => index.toString()}

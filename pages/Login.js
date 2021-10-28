@@ -3,7 +3,7 @@ import { View, Text, Button, Alert } from 'react-native';
 import UserCard from '../components/UserCard';
 import UserPageSyles from '../styles/UserPageStyles';
 
-const Login = () => {
+const Login = ({navigation}) => {
 
     const[email,setEmail] = useState("");
     const[password,setPassword] = useState("");
@@ -38,10 +38,18 @@ const Login = () => {
                         secureTextEntry={true}
                         value={password}
                 />
-                <Button
-                    title="Login"
-                    onPress={submitHandler}
-                />
+                <View style={{flexDirection:'row'}}>
+                    <Button
+                        title="Login"
+                        onPress={submitHandler}
+                    />
+                    <Button
+                        title="Sign In"
+                        onPress={() => {
+                            navigation.navigate('SignIn');
+                        }}
+                    />
+                </View>
             </View>
         </View>
     );    

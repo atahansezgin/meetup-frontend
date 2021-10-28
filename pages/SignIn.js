@@ -1,8 +1,10 @@
+import { StackActions } from '@react-navigation/routers';
 import React,{useState} from 'react';
-import { View, StyleSheet, Text, TextInput, Button, Alert } from 'react-native';
+import { View, Text, Button, Alert } from 'react-native';
 import UserCard from '../components/UserCard';
+import UserPageSyles from '../styles/UserPageStyles';
 
-const SignIn = () => {
+const SignIn = ({navigation}) => {
 
     const[firstName,setFirstName] = useState("");
     const[lastName,setLastName] = useState("");
@@ -11,23 +13,24 @@ const SignIn = () => {
     const[pwd2,setPwd2] = useState("");
 
     const submitHandler = () => {
-        Alert.alert(firstName+" "+lastName+" "+email);
+        // Alert.alert(firstName+" "+lastName+" "+email);
         setEmail('');
         setFirstName('');
         setLastName('');
         setPwd1('');
         setPwd2('');
+        navigation.navigate('Home');
     }
 
 
     return(
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.headerTag}>
+        <View style={UserPageSyles.container}>
+            <View style={UserPageSyles.header}>
+                <Text style={UserPageSyles.headerTag}>
                     Sign In
                 </Text>
             </View>
-            <View style={styles.body}>
+            <View style={UserPageSyles.body}>
                 <UserCard
                     label="First Name :"
                     placeholder="Atahan"
@@ -78,25 +81,3 @@ const SignIn = () => {
 }
 
 export default SignIn;
-
-const styles = StyleSheet.create({
-    container:{
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    header:{
-        flex: 1,
-        alignItems:'center',
-        justifyContent:'flex-end',
-    },
-    body:{
-        flex:3,
-        alignItems:'center',
-        justifyContent:'center',
-    },
-    headerTag:{
-        fontSize:40,
-    },
-})
