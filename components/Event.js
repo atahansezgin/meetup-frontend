@@ -1,5 +1,6 @@
 import React , { useState } from 'react';
-import { FlatList, Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
+import moment from 'moment';
 
 const Event = ({title,date,description,place}) => {
     return(
@@ -12,7 +13,7 @@ const Event = ({title,date,description,place}) => {
                 </View>
                 <View>
                     <Text>
-                        {date} 
+                        {moment(date).format('d MMM Y hh:mm')}
                     </Text>
                 </View>
             </View>            
@@ -35,15 +36,15 @@ export default Event;
 
 const styles = StyleSheet.create({
     event:{
-        borderWidth:2,
         borderRadius:10,
-        width: '95%',
-        margin:20
+        width: '90%',
+        margin:20,
+        backgroundColor:'#fff'
     },
     eventHeader:{
         flexDirection:'row',
         justifyContent:'space-between',
-        padding: 10
+        padding: 10,
     },
     eventHeaderTag:{
         fontSize:30

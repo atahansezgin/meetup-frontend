@@ -1,15 +1,20 @@
 import React from 'react'
 import { StyleSheet, View, Text, TextInput } from 'react-native'
 
-const UserCard = ({label,placeholder,onChangeText,keyboardType,secureTextEntry,value}) => {
+const Card = ({label,placeholder,onChangeText,keyboardType,secureTextEntry,value}) => {
     return(
         <View style={styles.card}>
-                <View style={{flex:1}}>
+                <View style={{flex:3}}>
                     <Text style={styles.text}>
                         {label}
                     </Text>
                 </View>
-                <View style={{flex:2}}>
+                <View style={{flex:1}}>
+                    <Text style={styles.text}>
+                        :
+                    </Text>
+                </View>
+                <View style={{flex:7}}>
                     <TextInput
                         style={styles.input}
                         placeholder={placeholder}
@@ -17,6 +22,7 @@ const UserCard = ({label,placeholder,onChangeText,keyboardType,secureTextEntry,v
                         keyboardType={keyboardType}
                         secureTextEntry={secureTextEntry}
                         value={value}
+                        placeholderTextColor='#8e44ad'
                     />
                 </View>                
                 
@@ -24,7 +30,7 @@ const UserCard = ({label,placeholder,onChangeText,keyboardType,secureTextEntry,v
     )
 }
 
-export default UserCard;
+export default Card;
 
 const styles = StyleSheet.create({
     card:{
@@ -34,7 +40,10 @@ const styles = StyleSheet.create({
     },
     text:{
         fontSize:16,
-        marginHorizontal:9
+        marginHorizontal:9,
+        color:'#8e44ad',
+        fontWeight:'bold'
+
     },
     input:{
         borderWidth:2,

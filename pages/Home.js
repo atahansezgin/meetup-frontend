@@ -1,14 +1,14 @@
 import axios from 'axios';
 import React , { useState, useEffect } from 'react';
-import { FlatList, StyleSheet, SafeAreaView, RefreshControl, } from 'react-native';
+import { FlatList, StyleSheet, SafeAreaView, RefreshControl, View, Text } from 'react-native';
 import Event from '../components/Event';
 import api from '../apiURL.json'
 
-const Home = ({navigation}) => {
+const Home = () => {
     const[Refreshing, setRefreshing] = useState(false);
     const [DATA,setDATA] = useState([]);
     
-    const apiCall = () => axios.get(api.url+'Event').then(response => setDATA(response.data))
+    const apiCall = () => axios.get(api.url+'event/getAll').then(response => setDATA(response.data))
     
     const onRefresh = () => {
         setRefreshing(true);
@@ -20,7 +20,7 @@ const Home = ({navigation}) => {
         apiCall();
     },[]);
     return(
-        <SafeAreaView>
+        <SafeAreaView>   
             <FlatList
                 refreshControl={
                     <RefreshControl refreshing={Refreshing} onRefresh={onRefresh}/>
@@ -36,7 +36,6 @@ const Home = ({navigation}) => {
                 />)}
             />
         </SafeAreaView>
-        
     );
 }
 
@@ -44,8 +43,7 @@ export default Home;
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor: '#fff',
-        alignItems:'stretch',
-        padding: 20
+        backgroundColor:'#8e44ad',
+        //alignItems:'center'
     },
 })

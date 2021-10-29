@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import { View, Text, Button, Alert } from 'react-native';
-import UserCard from '../components/UserCard';
+import CustomButton from '../components/CustomButton';
+import Card from '../components/Card';
 import UserPageSyles from '../styles/UserPageStyles';
 
 const Login = ({navigation}) => {
@@ -11,7 +12,6 @@ const Login = ({navigation}) => {
     const submitHandler = () => {
         setEmail('');
         setPassword('');
-        navigation.navigate('Home');
     }
 
     return(
@@ -22,16 +22,16 @@ const Login = ({navigation}) => {
                 </Text>
             </View>
             <View style={UserPageSyles.body}>
-                <UserCard
-                        label="Email :"
+                <Card
+                        label="Email"
                         placeholder="mail@mail.com"
                         onChangeText={(value) => setEmail(value)}
                         keyboardType='email-address'
                         secureTextEntry={false}
                         value={email}
                 />
-                <UserCard
-                        label="Password :"
+                <Card
+                        label="Password"
                         placeholder="*****"
                         onChangeText={(value) => setPassword(value)}
                         keyboardType='default'
@@ -39,15 +39,14 @@ const Login = ({navigation}) => {
                         value={password}
                 />
                 <View style={{flexDirection:'row'}}>
-                    <Button
+
+                    <CustomButton
                         title="Login"
                         onPress={submitHandler}
                     />
-                    <Button
+                    <CustomButton
                         title="Sign In"
-                        onPress={() => {
-                            navigation.navigate('SignIn');
-                        }}
+                        onPress={() => navigation.navigate('SignIn')}
                     />
                 </View>
             </View>

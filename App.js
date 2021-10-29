@@ -1,48 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {createStackNavigator} from '@react-navigation/stack'
-import Home from './pages/Home';
-import SignIn from './pages/SignIn';
-import Login from './pages/Login'
+import RootStackScreen from './pages/RootStackScreen';
+import RootHomeScreen from './pages/RootHomeScreen';
 
-const Stack = createStackNavigator();
-const Drawer = createDrawerNavigator();
-
-var isLogged = false;
 const App = () => {
+  const isLoggedIn = false
+  
   return(
-  <NavigationContainer>
-    <Stack.Navigator
-      screenOptions={{
-        header: () => null
-      }}
-    >
-      <Stack.Screen 
-        name="Login" 
-        component={Login} 
-      />
-      <Stack.Screen 
-        name="SignIn" 
-        component={SignIn} 
-      />
-      <Stack.Screen 
-        name="Home" 
-        component={Home} 
-      />
-    </Stack.Navigator>
-  </NavigationContainer>
+    
+    <NavigationContainer>
+      { isLoggedIn == false ? 
+        (<RootStackScreen/>) 
+          : 
+        (<RootHomeScreen/>)
+      }
+    </NavigationContainer>
+    
   );  
 }
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

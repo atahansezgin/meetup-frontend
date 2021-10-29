@@ -3,22 +3,24 @@ import { StyleSheet } from 'react-native'
 const UserPageSyles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        backgroundColor:'#8e44ad'
     },
     header:{
         flex: 1,
-        alignItems:'center',
-        justifyContent:'flex-end',
+        justifyContent:'center'       
     },
     body:{
         flex:3,
         alignItems:'center',
         justifyContent:'center',
+        backgroundColor:'#fff',
+        borderTopStartRadius:30,
+        borderTopEndRadius:30
     },
     headerTag:{
         fontSize:40,
+        color:'#fff',
+        textAlign:'center',
     },
 })
 

@@ -1,7 +1,7 @@
-import { StackActions } from '@react-navigation/routers';
 import React,{useState} from 'react';
-import { View, Text, Button, Alert } from 'react-native';
-import UserCard from '../components/UserCard';
+import { View, Text } from 'react-native';
+import CustomButton from '../components/CustomButton';
+import Card from '../components/Card';
 import UserPageSyles from '../styles/UserPageStyles';
 
 const SignIn = ({navigation}) => {
@@ -18,7 +18,6 @@ const SignIn = ({navigation}) => {
         setLastName('');
         setPwd1('');
         setPwd2('');
-        navigation.navigate('Home');
     }
 
 
@@ -30,48 +29,48 @@ const SignIn = ({navigation}) => {
                 </Text>
             </View>
             <View style={UserPageSyles.body}>
-                <UserCard
-                    label="First Name :"
+                <Card
+                    label="First Name"
                     placeholder="Atahan"
                     onChangeText={(value) => setFirstName(value)}
                     keyboardType='number-pad'
                     secureTextEntry={false}
                     value={firstName}
                 />
-                <UserCard
-                    label="Last Name :"
+                <Card
+                    label="Last Name"
                     placeholder="Sezgin"
                     onChangeText={(value) => setLastName(value)}
                     keyboardType='default'
                     secureTextEntry={false}
                     value={lastName}
                 />
-                <UserCard
-                    label="Email :"
+                <Card
+                    label="Email"
                     placeholder="mail@mail.com"
                     onChangeText={(value) => setEmail(value)}
                     keyboardType='email-address'
                     secureTextEntry={false}
                     value={email}
                 />
-                <UserCard
-                    label="Password :"
+                <Card
+                    label="Password"
                     placeholder="not 12345"
                     onChangeText={(value) => setPwd1(value)}
                     keyboardType='default'
                     secureTextEntry={true}
                     value={pwd1}
                 />
-                <UserCard
-                    label="Verify Password :"
+                <Card
+                    label="Verify Password"
                     placeholder="not 12345"
                     onChangeText={(value) => setPwd2(value)}
                     keyboardType='default'
                     secureTextEntry={true}
                     value={pwd2}
                 />            
-                <Button
-                    title="Sign in"
+                <CustomButton 
+                    title="Sign In"
                     onPress={submitHandler}
                 />
             </View>
