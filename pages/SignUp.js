@@ -55,7 +55,7 @@ const SignUp = ({navigation}) => {
                     label="First Name"
                     placeholder="Atahan"
                     onChangeText={(value) => setFirstName(value)}
-                    keyboardType='number-pad'
+                    keyboardType='default'
                     secureTextEntry={false}
                     value={firstName}
                 />
