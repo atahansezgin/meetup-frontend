@@ -1,10 +1,15 @@
 import React,{useState} from 'react';
-import { View, Text } from 'react-native';
-import CustomButton from '../components/CustomButton';
-import Card from '../components/Card';
+import { View, Text, Alert } from 'react-native';
 import UserPageSyles from '../styles/UserPageStyles';
 
-const SignIn = ({navigation}) => {
+import CustomButton from '../components/CustomButton';
+import Card from '../components/Card';
+import { AuthContext } from '../components/Context';
+
+import axios from 'axios';
+import api from '../apiURL.json';
+
+const SignUp = ({navigation}) => {
 
     const[firstName,setFirstName] = useState("");
     const[lastName,setLastName] = useState("");
@@ -12,12 +17,29 @@ const SignIn = ({navigation}) => {
     const[pwd1,setPwd1] = useState("");
     const[pwd2,setPwd2] = useState("");
 
+    const {signUp} = React.useContext(AuthContext);
+
+    const post = () => {
+        const user = {
+            fullName : firstName+" "+lastName,
+            email : email,
+            password : pwd1,
+            deleted : false,
+        }
+        axios.post(api.url+'user/post',user);
+        signUp();
+    }
+
     const submitHandler = () => {
-        setEmail('');
-        setFirstName('');
-        setLastName('');
-        setPwd1('');
-        setPwd2('');
+        if(pwd1 == pwd2){
+            axios.get(api.url+`user/emailCheck?email=${email}`)
+                .then(response => {
+                    response.data ? Alert.alert("Email Error") : post();
+                })
+        }
+        else{
+            Alert.alert("Password Error");
+        }
     }
 
 
@@ -25,7 +47,7 @@ const SignIn = ({navigation}) => {
         <View style={UserPageSyles.container}>
             <View style={UserPageSyles.header}>
                 <Text style={UserPageSyles.headerTag}>
-                    Sign In
+                    Sign Up
                 </Text>
             </View>
             <View style={UserPageSyles.body}>
@@ -70,7 +92,7 @@ const SignIn = ({navigation}) => {
                     value={pwd2}
                 />            
                 <CustomButton 
-                    title="Sign In"
+                    title="Sign Up"
                     onPress={submitHandler}
                 />
             </View>
@@ -78,4 +100,4 @@ const SignIn = ({navigation}) => {
     );
 }
 
-export default SignIn;
+export default SignUp;

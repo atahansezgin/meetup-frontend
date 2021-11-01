@@ -1,15 +1,29 @@
 import React,{useState} from 'react';
-import { View, Text, Button, Alert } from 'react-native';
+import { View, Text, Alert } from 'react-native';
+import UserPageSyles from '../styles/UserPageStyles';
+
 import CustomButton from '../components/CustomButton';
 import Card from '../components/Card';
-import UserPageSyles from '../styles/UserPageStyles';
+import { AuthContext } from '../components/Context';
+
+import axios from 'axios';
+import api from '../apiURL.json';
+
 
 const Login = ({navigation}) => {
 
     const[email,setEmail] = useState("");
     const[password,setPassword] = useState("");
 
+    const {signIn} = React.useContext(AuthContext);
+
     const submitHandler = () => {
+
+        axios.get(api.url+`user/login?email=${email}&password=${password}`)
+            .then(response => {
+                response.data ? signIn() : Alert.alert("Error");
+            });
+            
         setEmail('');
         setPassword('');
     }
@@ -45,8 +59,8 @@ const Login = ({navigation}) => {
                         onPress={submitHandler}
                     />
                     <CustomButton
-                        title="Sign In"
-                        onPress={() => navigation.navigate('SignIn')}
+                        title="Sign Up"
+                        onPress={() => navigation.navigate('SignUp')}
                     />
                 </View>
             </View>
