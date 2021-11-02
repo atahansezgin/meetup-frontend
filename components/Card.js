@@ -22,7 +22,7 @@ const Card = ({label,placeholder,onChangeText,keyboardType,secureTextEntry,value
                         keyboardType={keyboardType}
                         secureTextEntry={secureTextEntry}
                         value={value}
-                        placeholderTextColor='#8e44ad'
+                        placeholderTextColor='#2980b9'
                     />
                 </View>                
                 
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     text:{
         fontSize:16,
         marginHorizontal:9,
-        color:'#8e44ad',
+        color:'#2980b9',
         fontWeight:'bold'
 
     },

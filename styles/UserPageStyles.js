@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 const UserPageSyles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor:'#8e44ad'
+        backgroundColor:'#2980b9'
     },
     header:{
         flex: 1,

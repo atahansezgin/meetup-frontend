@@ -43,6 +43,6 @@ export default Home;
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor:'#8e44ad',
+        backgroundColor:'#2980b9',
     },
 })

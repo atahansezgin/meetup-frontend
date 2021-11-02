@@ -64,7 +64,7 @@ export default EventCreate
 const styles = StyleSheet.create({
     container:{
         flex: 1,
-        backgroundColor:'#8e44ad'
+        backgroundColor:'#2980b9'
     },
     header:{
         flex:1,
