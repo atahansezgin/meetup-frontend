@@ -1,8 +1,10 @@
 import React,{useState} from 'react'
-import { View, Text, StyleSheet, TextInput } from 'react-native'
+import { View, Text, StyleSheet, Alert } from 'react-native'
 import CustomButton from '../components/CustomButton'
 import Card from '../components/Card'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import axios from 'axios'
+import api from '../apiURL.json';
 
 const EventCreate = () => {
 
@@ -11,7 +13,20 @@ const EventCreate = () => {
     const[place,setPlace] = useState("");
     const[date,setDate] = useState("");
 
+    const post = () => {
+        const event = {
+            title: title,
+            description: description,
+            place: place,
+            date: date,
+            deleted: false,
+        }
+        axios.post(api.url+'/event/post',event);
+        Alert.alert("Event Posted");
+    }
+
     const submitHandler = () => {
+        post();
         setTitle('');
         setDescription('');
         setPlace('');
@@ -46,7 +61,7 @@ const EventCreate = () => {
                 />
                 <Card
                     label="Date"
-                    placeholder="Date"
+                    placeholder="2020-01-01T20:00"
                     onChangeText={(value)=>setDate(value)}
                     value={date}
                 />
