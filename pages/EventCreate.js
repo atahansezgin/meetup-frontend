@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, TextInput } from 'react-native'
 import CustomButton from '../components/CustomButton'
 import Card from '../components/Card'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { AuthContext } from '../components/Context'
 
 const EventCreate = () => {
 
@@ -11,8 +10,6 @@ const EventCreate = () => {
     const[description,setDescription] = useState("");
     const[place,setPlace] = useState("");
     const[date,setDate] = useState("");
-
-    const {signOut} = React.useContext(AuthContext);
 
     const submitHandler = () => {
         setTitle('');
@@ -56,10 +53,6 @@ const EventCreate = () => {
                 <CustomButton
                     title="Create"
                     onPress={submitHandler}
-                />
-                <CustomButton
-                    title="Logout"
-                    onPress={() => {signOut()}}
                 />
             </View>
         </View>
