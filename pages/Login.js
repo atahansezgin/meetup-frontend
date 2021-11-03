@@ -21,7 +21,7 @@ const Login = ({navigation}) => {
 
         axios.get(api.url+`user/login?email=${email}&password=${password}`)
             .then(response => {
-                response.data ? signIn() : Alert.alert("Error");
+                response.data ? signIn(email) : Alert.alert("Error");
             });
             
         setEmail('');

@@ -1,8 +1,7 @@
 import React,{useState} from 'react'
-import { View, Text, StyleSheet, Alert } from 'react-native'
+import { View, Text, StyleSheet, Alert, Button } from 'react-native'
 import CustomButton from '../components/CustomButton'
 import Card from '../components/Card'
-import AsyncStorage from '@react-native-async-storage/async-storage'
 import axios from 'axios'
 import api from '../apiURL.json';
 

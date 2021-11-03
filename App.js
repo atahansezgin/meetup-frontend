@@ -1,39 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { ActivityIndicator, View } from 'react-native'
-
 import {NavigationContainer} from '@react-navigation/native';
 import RootStackScreen from './pages/RootStackScreen';
 import RootHomeScreen from './pages/RootHomeScreen';
-
-import { AuthContext } from './components/Context';
-
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {AuthContext} from './components/Context';
+import axios from 'axios';
+import api from './apiURL.json';
 
 const App = () => {
 
-  const[isLoading,setIsLoading] = useState(true);
-  const [userToken,setUserToken] = useState(null);
+  const [isLoading,setIsLoading] = React.useState(true);
+  const [user,setUser] = React.useState(null);
 
   const authContext = React.useMemo(() => ({
-    signIn: () => {
-      AsyncStorage.setItem('userToken','true');
-      setUserToken('true');
-      setIsLoading(false);
+    signIn: (email) => {
+        axios.get(api.url+`user/getUser?email=${email}`)
+          .then(response => {
+            AsyncStorage.setItem('user',JSON.stringify(response.data));
+            setUser(response.data);
+          });
+        setIsLoading(false);
     },
     signOut: () => {
-      AsyncStorage.removeItem('userToken');
-      setUserToken(null);
-      setIsLoading(false);
+        AsyncStorage.clear();
+        setUser(null);
+        setIsLoading(false);
     },
-    signUp: () => {
-      AsyncStorage.setItem('userToken','true');
-      setUserToken('true');
-      setIsLoading(false);
+    signUp: (email) => {
+        axios.get(api.url+`user/getUser?email=${email}`)
+          .then(response => {
+            AsyncStorage.setItem('user',JSON.stringify(response.data));
+            setUser(response.data);
+          });
+        setIsLoading(false);
     }
-  }),[])
+    }),[]);
 
-  useEffect(() => {
-    AsyncStorage.getItem('userToken').then(value => setUserToken(value));
+  React.useEffect(() => {
+    AsyncStorage.getItem('user').then(value => setUser(value));
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
@@ -49,12 +54,11 @@ const App = () => {
   return(
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
-        { userToken !== null ? 
-        <RootHomeScreen/>
-          :
-        <RootStackScreen/>
-      }
-        
+        { user !== null ? 
+          <RootHomeScreen/>
+            :
+          <RootStackScreen/>
+        }
       </NavigationContainer>
     </AuthContext.Provider>
   );  

@@ -4,14 +4,27 @@ import { DrawerContentScrollView, DrawerItemList, DrawerItem} from '@react-navig
 import { Drawer } from 'react-native-paper';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
 import { AuthContext } from './Context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const CustomDrawerContent = (props) => {
 
-    const {signOut} = React.useContext(AuthContext)
-
+    const {signOut} = React.useContext(AuthContext);
     return(
         <View style={{flex:1}}>
             <DrawerContentScrollView {...props}>
+                <Drawer.Section>
+                    <DrawerItem 
+                        icon={({color,size})=>(
+                            <FontAwesome5 
+                                name="user-alt"
+                                color={color}
+                                size={size}
+                            />
+                        )}
+                        label="Profile"
+                        onPress={()=> props.navigation.navigate('Profile')}
+                    />
+                </Drawer.Section>
                 <Drawer.Section>
                     <DrawerItem
                         icon={({color,size}) => (
@@ -19,7 +32,6 @@ const CustomDrawerContent = (props) => {
                                 name="home"
                                 color={color}
                                 size={size}
-                                onPress={()=>{}}
                             />
                         )}
                         label="Home"
