@@ -2,8 +2,7 @@ import React,{useState} from 'react'
 import { View, Text, StyleSheet, Alert, Button } from 'react-native'
 import CustomButton from '../components/CustomButton'
 import Card from '../components/Card'
-import axios from 'axios'
-import api from '../apiURL.json';
+import { postEvent } from '../services/EventServices'
 
 const EventCreate = () => {
 
@@ -20,7 +19,7 @@ const EventCreate = () => {
             date: date,
             deleted: false,
         }
-        axios.post(api.url+'/event/post',event);
+        postEvent(event);
         Alert.alert("Event Posted");
     }
 
