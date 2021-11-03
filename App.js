@@ -5,8 +5,7 @@ import RootStackScreen from './pages/RootStackScreen';
 import RootHomeScreen from './pages/RootHomeScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthContext} from './components/Context';
-import axios from 'axios';
-import api from './apiURL.json';
+import { getUser } from './services/UserServices';
 
 const App = () => {
 
@@ -15,7 +14,7 @@ const App = () => {
 
   const authContext = React.useMemo(() => ({
     signIn: (email) => {
-        axios.get(api.url+`user/getUser?email=${email}`)
+        getUser(email)
           .then(response => {
             AsyncStorage.setItem('user',JSON.stringify(response.data));
             setUser(response.data);
@@ -28,7 +27,7 @@ const App = () => {
         setIsLoading(false);
     },
     signUp: (email) => {
-        axios.get(api.url+`user/getUser?email=${email}`)
+        getUser(email)
           .then(response => {
             AsyncStorage.setItem('user',JSON.stringify(response.data));
             setUser(response.data);

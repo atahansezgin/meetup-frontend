@@ -5,9 +5,7 @@ import UserPageSyles from '../styles/UserPageStyles';
 import CustomButton from '../components/CustomButton';
 import Card from '../components/Card';
 import { AuthContext } from '../components/Context';
-
-import axios from 'axios';
-import api from '../apiURL.json';
+import { signUpCall,emailCheck } from '../services/UserServices';
 
 const SignUp = ({navigation}) => {
 
@@ -26,16 +24,13 @@ const SignUp = ({navigation}) => {
             password : pwd1,
             deleted : false,
         }
-        axios.post(api.url+'user/post',user);
+        signUpCall(user);
         signUp();
     }
 
     const submitHandler = () => {
         if(pwd1 == pwd2){
-            axios.get(api.url+`user/emailCheck?email=${email}`)
-                .then(response => {
-                    response.data ? Alert.alert("Email Error") : post();
-                })
+            emailCheck(email).then(response => response.data ? Alert.alert("Email Error") : post())
         }
         else{
             Alert.alert("Password Error");

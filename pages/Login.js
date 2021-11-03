@@ -1,13 +1,10 @@
 import React,{useState} from 'react';
 import { View, Text, Alert } from 'react-native';
 import UserPageSyles from '../styles/UserPageStyles';
-
 import CustomButton from '../components/CustomButton';
 import Card from '../components/Card';
 import { AuthContext } from '../components/Context';
-
-import axios from 'axios';
-import api from '../apiURL.json';
+import { loginCall } from '../services/UserServices';
 
 
 const Login = ({navigation}) => {
@@ -18,12 +15,7 @@ const Login = ({navigation}) => {
     const {signIn} = React.useContext(AuthContext);
 
     const submitHandler = () => {
-
-        axios.get(api.url+`user/login?email=${email}&password=${password}`)
-            .then(response => {
-                response.data ? signIn(email) : Alert.alert("Error");
-            });
-            
+        loginCall(email,password).then(response => response.data ? signIn(email) : Alert.alert("Error"));
         setEmail('');
         setPassword('');
     }
