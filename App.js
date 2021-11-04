@@ -14,11 +14,7 @@ const App = () => {
 
   const authContext = React.useMemo(() => ({
     signIn: (email) => {
-        getUser(email)
-          .then(response => {
-            AsyncStorage.setItem('user',JSON.stringify(response.data));
-            setUser(response.data);
-          });
+        getUser(email,setUser)
         setIsLoading(false);
     },
     signOut: () => {
@@ -27,11 +23,7 @@ const App = () => {
         setIsLoading(false);
     },
     signUp: (email) => {
-        getUser(email)
-          .then(response => {
-            AsyncStorage.setItem('user',JSON.stringify(response.data));
-            setUser(response.data);
-          });
+        getUser(email,setUser)
         setIsLoading(false);
     }
     }),[]);

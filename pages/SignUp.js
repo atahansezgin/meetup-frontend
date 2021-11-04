@@ -16,8 +16,8 @@ const SignUp = ({navigation}) => {
     const[pwd2,setPwd2] = useState("");
 
     const {signUp} = React.useContext(AuthContext);
-
-    const post = () => {
+    
+    const post = () => {    
         const user = {
             fullName : firstName+" "+lastName,
             email : email,
@@ -25,12 +25,12 @@ const SignUp = ({navigation}) => {
             deleted : false,
         }
         signUpCall(user);
-        signUp();
+        signUp(email);
     }
 
     const submitHandler = () => {
         if(pwd1 == pwd2){
-            emailCheck(email).then(response => response.data ? Alert.alert("Email Error") : post())
+            emailCheck(email,post)
         }
         else{
             Alert.alert("Password Error");

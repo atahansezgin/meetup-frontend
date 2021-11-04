@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { View, Text, Alert } from 'react-native';
+import { View, Text } from 'react-native';
 import UserPageSyles from '../styles/UserPageStyles';
 import CustomButton from '../components/CustomButton';
 import Card from '../components/Card';
@@ -15,7 +15,7 @@ const Login = ({navigation}) => {
     const {signIn} = React.useContext(AuthContext);
 
     const submitHandler = () => {
-        loginCall(email,password).then(response => response.data ? signIn(email) : Alert.alert("Error"));
+        loginCall(email,password,signIn);
         setEmail('');
         setPassword('');
     }
