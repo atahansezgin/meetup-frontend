@@ -1,8 +1,8 @@
 import React from 'react';
 import { ActivityIndicator, View } from 'react-native'
 import {NavigationContainer} from '@react-navigation/native';
-import RootStackScreen from './pages/RootStackScreen';
-import RootHomeScreen from './pages/RootHomeScreen';
+import RootStackScreen from './navigators/RootStackScreen';
+import RootHomeScreen from './navigators/RootHomeScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AuthContext} from './components/Context';
 import { getUser } from './services/UserServices';

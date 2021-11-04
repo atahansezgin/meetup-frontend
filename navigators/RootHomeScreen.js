@@ -1,9 +1,9 @@
 import React from 'react'
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Home from './Home';
-import EventCreate from './EventCreate';
+import Home from '../pages/Home'
+import EventCreate from '../pages/EventCreate';
 import CustomDrawerContent from '../components/CustomDrawerContent';
-import ProfileScreen from './ProfileScreen';
+import ProfileScreen from '../pages/ProfileScreen';
 
 
 const Drawer = createDrawerNavigator();
