@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const loginCall = (email,password,signIn) => 
     axios.get(api.url+`user/login?email=${email}&password=${password}`)
-        .then(response => response.data ? signIn() : Alert.alert("error"));
+        .then(response => response.data ? signIn(email) : Alert.alert("error"));
 
 export const signUpCall = (user) => axios.post(api.url+'user/post',user);
 
