@@ -1,9 +1,12 @@
+import react from 'react';
 import React from 'react';
 import { View,Text,StyleSheet } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { UserContext } from '../components/Context';
 
 const ProfileScreen = () => {
-    const[userData,setUserData] = React.useState(AsyncStorage.getItem('user').then(data => setUserData(JSON.parse(data))));
+    const user = React.useContext(UserContext);
+    const[events,setEvents] = React.useState([]);
+    React.useEffect(()=>setEvents(user.events),[]);
     return(
         <View style={styles.container}>
             <View style={styles.header}>
@@ -13,11 +16,11 @@ const ProfileScreen = () => {
             </View>
             <View style={styles.body}>
                 <Text>
-                    {userData.fullName}
+                    Full Name : {user.fullName}
                     
                 </Text>
                 <Text>
-                    {userData.email}
+                    Email : {user.email}
                 </Text>
             </View>
         </View>

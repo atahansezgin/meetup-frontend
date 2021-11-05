@@ -1,10 +1,12 @@
 import React,{useState} from 'react'
-import { View, Text, StyleSheet, Alert, Button } from 'react-native'
+import { View, Text, StyleSheet, Alert } from 'react-native'
 import CustomButton from '../components/CustomButton'
 import Card from '../components/Card'
 import { postEvent } from '../services/EventServices'
+import { UserContext } from '../components/Context'
 
 const EventCreate = () => {
+    const user = React.useContext(UserContext);
 
     const[title,setTitle] = useState("");
     const[description,setDescription] = useState("");
@@ -19,7 +21,7 @@ const EventCreate = () => {
             date: date,
             deleted: false,
         }
-        postEvent(event);
+        postEvent(event,user.id);
         Alert.alert("Event Posted");
     }
 

@@ -4,8 +4,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import RootStackScreen from './navigators/RootStackScreen';
 import RootHomeScreen from './navigators/RootHomeScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {AuthContext} from './components/Context';
-import { getUser } from './services/UserServices';
+import {AuthContext,UserContext} from './components/Context';
+import { getUser } from './services/UserServices'; 
 
 const App = () => {
 
@@ -29,7 +29,7 @@ const App = () => {
     }),[]);
 
   React.useEffect(() => {
-    AsyncStorage.getItem('user').then(value => setUser(value));
+    AsyncStorage.getItem('user').then(value => setUser(JSON.parse(value)));
     setTimeout(() => {
       setIsLoading(false);
     }, 1000);
@@ -44,13 +44,15 @@ const App = () => {
   }
   return(
     <AuthContext.Provider value={authContext}>
-      <NavigationContainer>
-        { user !== null ? 
-          <RootHomeScreen/>
-            :
-          <RootStackScreen/>
-        }
-      </NavigationContainer>
+      <UserContext.Provider value={user}>
+        <NavigationContainer>
+          { user !== null ? 
+            <RootHomeScreen/>
+              :
+            <RootStackScreen/>
+          }
+        </NavigationContainer>
+      </UserContext.Provider>
     </AuthContext.Provider>
   );  
 }

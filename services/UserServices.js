@@ -19,3 +19,4 @@ export const getUser = (email,setUser) =>
             AsyncStorage.setItem('user',JSON.stringify(response.data));
             setUser(response.data);
         });
+
