@@ -27,6 +27,6 @@ export default EventList;
 
 const styles= StyleSheet.create({
     container:{
-        backgroundColor:'#2980b9',
+        
     }
 })

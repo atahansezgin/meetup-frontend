@@ -39,7 +39,9 @@ const styles = StyleSheet.create({
         borderRadius:10,
         width: '90%',
         margin:20,
-        backgroundColor:'#fff'
+        backgroundColor:'#fff',
+        borderWidth:2,
+        borderColor:'#2980b9',
     },
     eventHeader:{
         flexDirection:'row',
