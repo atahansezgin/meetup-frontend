@@ -1,27 +1,36 @@
-import react from 'react';
 import React from 'react';
 import { View,Text,StyleSheet } from 'react-native';
 import { UserContext } from '../components/Context';
+import {getEventsByUserId} from '../services/EventServices';
+import EventList from '../components/EventList';
 
 const ProfileScreen = () => {
     const user = React.useContext(UserContext);
     const[events,setEvents] = React.useState([]);
-    React.useEffect(()=>setEvents(user.events),[]);
+
+    React.useEffect(() => {
+        getEventsByUserId(user.id).then(response => setEvents(response.data))
+    },[])
     return(
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.headerTag}>
-                    Profile
+                    Profil
                 </Text>
             </View>
             <View style={styles.body}>
                 <Text>
-                    Full Name : {user.fullName}
-                    
+                    {user.fullName}
                 </Text>
                 <Text>
-                    Email : {user.email}
+                    {user.email}
                 </Text>
+                <View style={{marginBottom:20}}>
+                    <EventList 
+                        onRefresh={()=> getEventsByUserId(user.id).then(response => setEvents(response.data))}
+                        data={events}
+                    />
+                </View>
             </View>
         </View>
     );
