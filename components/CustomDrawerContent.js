@@ -13,19 +13,6 @@ const CustomDrawerContent = (props) => {
         <View style={{flex:1}}>
             <DrawerContentScrollView {...props}>
                 <Drawer.Section>
-                    <DrawerItem 
-                        icon={({color,size})=>(
-                            <FontAwesome5 
-                                name="user-alt"
-                                color={color}
-                                size={size}
-                            />
-                        )}
-                        label="Profile"
-                        onPress={()=> props.navigation.navigate('Profile')}
-                    />
-                </Drawer.Section>
-                <Drawer.Section>
                     <DrawerItem
                         icon={({color,size}) => (
                             <FontAwesome5 
@@ -34,8 +21,21 @@ const CustomDrawerContent = (props) => {
                                 size={size}
                             />
                         )}
-                        label="Home"
+                        label="Ana Sayfa"
                         onPress={() => props.navigation.navigate('Home')}
+                    />
+                </Drawer.Section>
+                <Drawer.Section>
+                    <DrawerItem 
+                        icon={({color,size})=>(
+                            <FontAwesome5 
+                                name="user-alt"
+                                color={color}
+                                size={size}
+                            />
+                        )}
+                        label="Profil"
+                        onPress={()=> props.navigation.navigate('Profile')}
                     />
                 </Drawer.Section>
                 <Drawer.Section>
@@ -47,7 +47,7 @@ const CustomDrawerContent = (props) => {
                                 size={size}
                             />
                         )}
-                        label="Event Create"
+                        label="Etkinlik Oluştur"
                         onPress={() => props.navigation.navigate('EventCreate')}
                     />
                 </Drawer.Section>
@@ -62,7 +62,7 @@ const CustomDrawerContent = (props) => {
                             size={size}
                         />
                     )}
-                    label="Sign Out"
+                    label="Çıkış Yap"
                     onPress={() => signOut()}
                 />
             </Drawer.Section>
